@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjualan Ikan Online</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> <!-- Pastikan link AOS CSS ada di sini -->
+    <style>
+        body {
+            background-image: url('14.jpg'); /* Nama file gambar latar belakang */
+            background-size: cover; /* Memastikan gambar memenuhi layar */
+            background-repeat: no-repeat; /* Tidak mengulangi gambar */
+            background-position: center; /* Pusatkan gambar */
+            background-attachment: fixed; /* Gambar tetap saat menggulir */
+            color: #333; /* Warna teks default */
+        }
+
+        #map {
+            width: 100%; /* Peta akan memenuhi lebar elemen induknya */
+            height: 80vh; /* Peta akan memenuhi 80% dari tinggi tampilan layar */
+            background: #e0e0e0; /* Latar belakang sementara jika peta belum dimuat */
+        }
+
+        @media (max-width: 768px) {
+            #map {
+                height: 100vh; /* Ukuran tinggi peta pada layar ponsel tetap 80% */
+            }
+        }
+
+        .popup-container img {
+    max-width: 100%; /* Gambar tidak akan melebihi lebar container */
+    max-height: 300px; /* Batas maksimal tinggi gambar */
+    width: auto; /* Biarkan lebar proporsional */
+    height: auto; /* Biarkan tinggi proporsional */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin: 10px auto;
+}
+
+
+        .sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-toggle {
+            cursor: pointer;
+        }
+
+        @media (max-width: 676px) {
+            #map {
+                height: 650px;
+                z-index: -0;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+
+
+<body class="bg-gray-50 text-gray-800">
+     <!-- Sidebar -->
+<div id="sidebar" class="sidebar bg-[rgba(0,0,0,0.5)] backdrop-blur-lg flex flex-col h-full" data-aos="fade-right" data-aos-duration="600">
+    <a href="#" id="close-sidebar" class="text-right px-4 py-2 text-white text-3xl hover:text-gray-200 transition duration-300">✖</a>
+    <a href="./" class="text-white hover:text-gray-200 mx-2 text-lg font-semibold transition duration-300"><em>Beranda</em></a>
+    <a href="./jenis.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Jenis Ikan</em></a>
+    <a href="./alamat.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Alamat</em></a>
+    <a href="./kontak.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Kontak</em></a>
+    <br />
+ 
+    
+    <div class="footer mt-auto p-4">
+        <p class="mb-2 text-white text-center font-semibold">
+            <em>&copy; 2024 Pelelangan Ikan. Semua Hak Dilindungi.</em>
+        </p>
+    </div>
+</div>
+
+    <!-- Navigasi -->
+    <nav class="shadow backdrop-blur-sm bg-transparent mb-10 w-full justify-center fixed top-0 z-10"
+        data-aos="fade-down" data-aos-duration="2000">
+        <div class="w-full mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Teks "Pelelangan Ikan" dengan efek gradien dan lebih menarik -->
+            <a href="#" class="text-4xl font-extrabold text-white hover:text-white">
+                <em>Pelelangan <span>Ikan.</span></em>
+            </a>
+
+            <!-- Navigasi Links -->
+            <div class="hidden md:flex space-x-6">
+                <a href="./" class="text-white hover:text-blue-500 font-medium transition duration-300">Beranda</a>
+                <a href="./jenis.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Jenis Ikan</a>
+                <a href="./alamat.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Alamat</a>
+                <a href="./kontak.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Kontak</a>
+            </div>
+
+            <div class="md:hidden">
+                <button id="sidebar-toggle" class="text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+   
+   <!-- Peta Lokasi -->
+<section id="lokasi" class="inline-bloack items-center content-center h-screen px-4">
+    <h2 class="text-4xl font-semibold text-center text-white mb-2 mt-4">Lokasi Kami</h2>
+    <div id="map" class="w-full h-96 bg-gray-300 rounded-lg mt-4"></div>
+</section>
+
+<br><br><br><br><br>
+<footer class="bg-gray-500/50 text-white py-4 backdrop-blur-sm fixed bottom-0 w-full">
+    <div class="container mx-auto px-4 text-center">
+        <p class="text-sm sm:text-base lg:text-lg font-medium">
+            © 2024 Pelelangan Ikan. Semua Hak Dilindungi.
+        </p>
+    </div>
+</footer>
+
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Inisialisasi AOS
+        AOS.init();
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const map = L.map("map").setView([-6.095807166955127, 120.46543684047023], 18);
+
+            const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap contributors'
+            });
+            
+            osmLayer.addTo(map);
+
+            const baseLayers = {
+                "Standar": osmLayer,
+                "default": map
+            };
+
+            L.control.layers(baseLayers).addTo(map);
+
+            const umkmData = {
+                name: "Gudang Ikan",
+                rating: "4.2",
+                reviews: 45,
+                category: "pelelangan ikan terpercaya",
+                buka: "Buka 08.00 Pagi - Tutup pukul 12.00 Malam 🔻",
+                alamat: "Jl. Metro, Benteng Utara, Kec. Benteng, Sulawesi Selatan 92812",
+                phone: "6282187311437",
+                coords: [-6.095807166955127, 120.46543684047023],
+                imageUrl: "gudang ikan.jpg"
+            
+
+            };
+
+            const marker = L.marker(umkmData.coords).addTo(map);
+            marker.bindTooltip(umkmData.name, { permanent: true, direction: "top", className: "marker-tooltip" });
+            marker.bindPopup(`
+                <div class="popup-container">
+                    <div class="popup-header text-center">${umkmData.name}</div>
+                    <div class="popup-rating text-center">⭐ ${umkmData.rating} <span>(${umkmData.reviews})</span></div>
+                    <div class="popup-category text-center">${umkmData.category}</div>
+                    <br>
+                    <a class="shadow py-4 flex justify-center align-items-center h-10" href="https://maps.app.goo.gl/YzXmVuUxcF4XqV56A">langsung ke maps</a>
+                    <br>
+                    <img src="${umkmData.imageUrl}" alt="${umkmData.name}" class="popup-image" />
+                    <div class="popup-address"><i class="fas fa-map-marker-alt"></i> ${umkmData.alamat}</div>
+                    <div class="popup-hours"><i class="fas fa-clock"></i> <span>${umkmData.buka}</span></div>
+                    <div class="popup-contact"><i class="fas fa-phone-alt"></i> ${umkmData.phone}</div>
+                </div>
+            `);
+
+            // Menambahkan geoJSON Benteng Utara
+fetch("./bentengUtara.geojson")
+    .then(response => response.json())
+    .then(geojsonData => {
+        L.geoJSON(geojsonData, {
+            style: {
+                color: "#32cd32", // Warna garis (hijau kebiruan)
+                weight: 4,        // Lebar garis
+                opacity: 0.9      // Opasitas garis
+            }
+        }).addTo(map);
+    })
+    .catch(error => console.error("Error loading Benteng Utara GeoJSON:", error));
+
+            // Menambahkan geoJSON Benteng Selatan
+fetch("./bentengSelatan.geojson")
+    .then(response => response.json())
+    .then(geojsonData => {
+        L.geoJSON(geojsonData, {
+            style: {
+                color: "#ff6347", // Warna garis (merah tomat)
+                weight: 4,       // Lebar garis
+                opacity: 0.9     // Opasitas garis
+            }
+        }).addTo(map);
+    })
+    .catch(error => console.error("Error loading Benteng Selatan GeoJSON:", error));
+
+            // Menambahkan geoJSON (pastikan file .geojson ada di path yang benar)
+fetch("./bentengPusat.geojson")
+    .then(response => response.json())
+    .then(geojsonData => {
+        L.geoJSON(geojsonData, {
+            style: {
+                color: "#1e90ff", // Warna garis (biru cerah)
+                weight: 4,       // Lebar garis
+                opacity: 0.9     // Opasitas garis
+            }
+        }).addTo(map);
+    })
+    .catch(error => console.error("Error loading Benteng Pusat GeoJSON:", error));
+
+
+
+      // Menambahkan geoJSON (pastikan file .geojson ada di path yang benar)
+     fetch("./jalanBentengAnjay.geojson")
+           .then(response => response.json())
+             .then(geojsonData => {
+             L.geoJSON(geojsonData, {
+                   style: {
+                         color: "#f0a500", 
+                        weight: 3,       
+                      opacity: 0.8     
+                        }
+                    }).addTo(map);
+                })
+                .catch(error => console.error("Error loading jalan GeoJSON:", error));
+
+
+    
+
+        fetch("./sekolah.geojson")
+    .then(response => response.json())
+    .then(geojsonData => {
+        // Membuat custom icon menggunakan gambar sekolah
+        const schoolIcon = L.icon({
+            iconUrl: 'sekolah.png', // Path ke file ikon sekolah
+            iconSize: [32, 32],                // Ukuran ikon
+            iconAnchor: [16, 32],              // Posisi anchor (titik bawah ikon)
+            popupAnchor: [0, -32]              // Posisi popup relatif terhadap ikon
+        });
+
+        L.geoJSON(geojsonData, {
+            pointToLayer: function (feature, latlng) {
+                // Menambahkan marker dengan custom icon gambar sekolah
+                return L.marker(latlng, { icon: schoolIcon });
+            },
+            onEachFeature: function (feature, layer) {
+                if (feature.properties && feature.properties["Nama Sekolah diKota Selayar"]) {
+                    // Menambahkan popup yang menampilkan nama sekolah
+                    layer.bindPopup(
+                        "<strong>Nama Sekolah:</strong> " +
+                        feature.properties["Nama Sekolah diKota Selayar"]
+                    );
+                }
+            }
+        }).addTo(map); // Menambahkan GeoJSON ke peta
+    })
+    .catch(error => console.error("Error loading sekolah GeoJSON:", error));
+
+        fetch("./mesjid.geojson")
+    .then(response => response.json())
+    .then(geojsonData => {
+        // Membuat custom icon untuk mesjid
+        const mesjidIcon = L.icon({
+            iconUrl: 'mesjid.png', // Path ke file ikon mesjid
+            iconSize: [32, 32],   // Ukuran ikon
+            iconAnchor: [16, 32], // Posisi anchor
+            popupAnchor: [0, -32] // Posisi popup relatif terhadap ikon
+        });
+
+        L.geoJSON(geojsonData, {
+            pointToLayer: function (feature, latlng) {
+                // Menambahkan marker dengan custom icon
+                return L.marker(latlng, { icon: mesjidIcon });
+            },
+            onEachFeature: function (feature, layer) {
+                if (feature.properties && feature.properties["Nama Mesjid"]) {
+                    // Menambahkan popup yang menampilkan nama mesjid
+                    layer.bindPopup("<strong>Nama Mesjid:</strong> " + feature.properties["Nama Mesjid"]);
+                }
+            }
+        }).addTo(map); // Menambahkan geoJSON ke peta
+    })
+    .catch(error => console.error("Error loading mesjid GeoJSON:", error));
+
+    
+            fetch("./kecamatanBenteng.geojson")
+                .then(response => response.json())
+                .then(geojsonData => {
+                 L.geoJSON(geojsonData, {
+                        style: {
+                        color: "#333",        
+                         weight: 1.5,           
+                        opacity: 0.8,         
+                        fillColor: "#333",    
+                         fillOpacity: 0.1      
+                        }
+                    }).addTo(map);
+                })
+                .catch(error => console.error("Error loading kecamatanBenteng GeoJSON:", error));
+           });
+             // JavaScript untuk Sidebar
+             const sidebar = document.getElementById("sidebar");
+        const sidebarToggle = document.getElementById("sidebar-toggle");
+        const closeSidebar = document.getElementById("close-sidebar");
+
+        sidebarToggle.addEventListener("click", function () {
+            sidebar.style.left = "0px";
+        });
+
+        closeSidebar.addEventListener("click", function () {
+            sidebar.style.left = "-250px";
+        });
+
+        const sidebarLinks = document.querySelectorAll(".sidebar a");
+        sidebarLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+                sidebar.style.left = "-250px";
+            });
+        });
+
+                const toggleBtn = document.querySelector('button[aria-label="Toggle navigation menu"]');
+        const navLinks = document.querySelector('ul');
+
+        toggleBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('hidden');
+        });
+        
+    </script>
+</body>
+
+</html>

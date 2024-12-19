@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"> <!-- Mencegah zoom -->
+    <title>Penjualan Ikan Online</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('15.webp'); /* Ganti dengan path file gambar */
+            background-size: cover; /* Agar gambar mencakup seluruh layar */
+            background-position: center; /* Posisikan gambar di tengah */
+            background-repeat: no-repeat; /* Mencegah pengulangan gambar */
+            background-attachment: fixed; /* Membuat background tetap saat di-scroll */
+            overflow: hidden;
+        }
+    
+        .sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            height: 100%;
+            overflow-y: auto; /* Sidebar tetap bisa di-scroll jika konten melebihi tinggi */
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+    
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+    
+        .sidebar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    
+        .sidebar-toggle {
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+         <!-- Sidebar -->
+<div id="sidebar" class="sidebar bg-[rgba(0,0,0,0.5)] backdrop-blur-lg flex flex-col h-full" data-aos="fade-right" data-aos-duration="600">
+    <a href="#" id="close-sidebar" class="text-right px-4 py-2 text-white text-3xl hover:text-gray-200 transition duration-300">✖</a>
+    <a href="./" class="text-white hover:text-gray-200 mx-2 text-lg font-semibold transition duration-300"><em>Beranda</em></a>
+    <a href="./jenis.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Jenis Ikan</em></a>
+    <a href="./alamat.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Alamat</em></a>
+    <a href="./kontak.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Kontak</em></a>
+    <br />
+ 
+    
+    <div class="footer mt-auto p-4">
+        <p class="mb-2 text-white text-center font-semibold">
+            <em>&copy; 2024 Pelelangan Ikan. Semua Hak Dilindungi.</em>
+        </p>
+    </div>
+</div>
+
+   <!-- Navigasi -->
+<nav class="shadow backdrop-blur-sm bg-transparent mb-10 w-full justify-center fixed top-0 z-10"
+data-aos="fade-down" data-aos-duration="2000">
+<div class="w-full mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Teks "Pelelangan Ikan" dengan efek gradien dan lebih menarik -->
+    <a href="#" class="text-4xl font-extrabold text-white hover:text-white">
+    <em>Pelelangan <span>Ikan.</span></em>
+</a>
+
+
+    <!-- Navigasi Links -->
+    <div class="hidden md:flex space-x-6">
+        <a href="./" class="text-white hover:text-blue-500 font-medium transition duration-300">Beranda</a>
+        <a href="./jenis.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Jenis Ikan</a>
+        <a href="./alamat.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Alamat</a>
+        <a href="./kontak.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Kontak</a>
+    </div>
+
+            <div class="md:hidden">
+                <button id="sidebar-toggle" class="text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero bg-cover bg-center h-screen flex items-center justify-center text-center text-white" style="background-image: url('https://source.unsplash.com/featured/?fish-market');">
+    <div class="bg-black bg-opacity-50 p-6 rounded-lg">
+        <h1 class="text-4xl font-bold mb-4">Selamat Datang di Pelelangan Ikan</h1>
+        <p class="text-lg mb-6">Kami menyediakan ikan segar langsung dari nelayan untuk Anda. Harga kompetitif dan kualitas terbaik!</p>
+        <a href="#about-services" class="bg-green-600 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold">Pelajari Lebih Lanjut</a>
+    </div>
+</section>
+
+<!-- Gabungan Tentang Kami dan Layanan Kami -->
+<section id="about-services" 
+    class="hero bg-cover bg-center py-10 sm:py-16 lg:py-20 flex flex-col items-center text-center text-white" 
+    style="background-image: url('https://source.unsplash.com/featured/?fish-market');">
+    
+    <!-- Tentang Kami -->
+    <div class="bg-black bg-opacity-60 p-4 sm:p-6 rounded-lg mb-8 sm:mb-10 max-w-2xl sm:max-w-3xl">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4">Tentang Kami</h2>
+        <p class="text-base sm:text-lg leading-relaxed">
+            Kami adalah pusat pelelangan ikan yang terpercaya, melayani berbagai kebutuhan ikan segar untuk pelanggan lokal maupun internasional. Dengan jaringan nelayan yang luas, kami memastikan ketersediaan ikan segar setiap hari.
+        </p>
+    </div>
+
+    <!-- Layanan Kami -->
+    <div class="bg-black bg-opacity-60 p-4 sm:p-6 rounded-lg w-11/12 sm:w-4/5 max-w-5xl">
+        <h1 class="text-3xl sm:text-4xl font-bold mb-6">Layanan Kami</h1>
+        <ul class="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <li class="bg-white bg-opacity-80 p-4 sm:p-6 shadow-lg rounded-lg text-gray-800 hover:bg-opacity-100 hover:shadow-xl transition duration-300 ease-in-out">
+                <h3 class="text-lg sm:text-xl font-semibold mb-2 text-center">Penjualan Ikan Segar</h3>
+                <p class="text-sm sm:text-base text-center">Kami menyediakan berbagai jenis ikan segar seperti tuna, kakap, dan kerapu.</p>
+            </li>
+            <li class="bg-white bg-opacity-80 p-4 sm:p-6 shadow-lg rounded-lg text-gray-800 hover:bg-opacity-100 hover:shadow-xl transition duration-300 ease-in-out">
+                <h3 class="text-lg sm:text-xl font-semibold mb-2 text-center">Pelelangan Harian</h3>
+                <p class="text-sm sm:text-base text-center">Pelelangan ikan dengan harga yang transparan dan kompetitif setiap hari.</p>
+            </li>
+            <li class="bg-white bg-opacity-80 p-4 sm:p-6 shadow-lg rounded-lg text-gray-800 hover:bg-opacity-100 hover:shadow-xl transition duration-300 ease-in-out">
+                <h3 class="text-lg sm:text-xl font-semibold mb-2 text-center">Pengemasan dan Pengiriman</h3>
+                <p class="text-sm sm:text-base text-center">Kami melayani pengemasan dan pengiriman ikan segar ke berbagai daerah.</p>
+            </li>
+            <li class="bg-white bg-opacity-80 p-4 sm:p-6 shadow-lg rounded-lg text-gray-800 hover:bg-opacity-100 hover:shadow-xl transition duration-300 ease-in-out">
+                <h3 class="text-lg sm:text-xl font-semibold mb-2 text-center">Konsultasi Bisnis</h3>
+                <p class="text-sm sm:text-base text-center">Bantuan profesional untuk kebutuhan ikan Anda dalam usaha kuliner atau bisnis.</p>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<footer class="bg-gray-500/50 text-white py-4 backdrop-blur-sm mb-[-50px] fixed bottom-12 w-full">
+    <div class="container mx-auto text-center">
+        <p>© 2024 Pelelangan Ikan. Semua Hak Dilindungi.</p>
+    </div>
+</footer>
+
+<style>
+    /* Responsif untuk perangkat yang lebih kecil (mobile) */
+    @media (max-width: 768px) {
+        footer {
+            margin-bottom: -30px;  /* Margin bawah lebih kecil untuk mobile */
+            padding-top: 0;         /* Menyesuaikan padding untuk mobile */
+        }
+    }
+
+    /* Responsif untuk perangkat lebih besar (desktop) */
+    @media (min-width: 769px) {
+        footer {
+            margin-bottom: -50px;  /* Margin bawah lebih besar untuk desktop */
+            padding-top: 0;         /* Menyesuaikan padding untuk desktop */
+        }
+    }
+</style>
+
+    
+</body>
+<script>
+            // JavaScript untuk Sidebar
+            const sidebar = document.getElementById("sidebar");
+        const sidebarToggle = document.getElementById("sidebar-toggle");
+        const closeSidebar = document.getElementById("close-sidebar");
+
+        sidebarToggle.addEventListener("click", function () {
+            sidebar.style.left = "0px";
+        });
+
+        closeSidebar.addEventListener("click", function () {
+            sidebar.style.left = "-250px";
+        });
+
+        const sidebarLinks = document.querySelectorAll(".sidebar a");
+        sidebarLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+                sidebar.style.left = "-250px";
+            });
+        });
+</script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   
+        <script>
+             AOS.init()
+        </script>
+</html>

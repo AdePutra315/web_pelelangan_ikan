@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penjualan Ikan Online</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+      body {
+        background-image: url('13.jpg'); /* Nama file gambar latar belakang */
+        background-size: cover; /* Memastikan gambar memenuhi layar */
+        background-repeat: no-repeat; /* Tidak mengulangi gambar */
+        background-position: center; /* Pusatkan gambar */
+        background-attachment: fixed; /* Gambar tetap saat menggulir */
+        color: #333; /* Warna teks default */
+    }
+ 
+    .sidebar {
+width: 250px;
+position: fixed;
+top: 0;
+left: -250px;
+height: 100%;
+transition: left 0.3s ease;
+z-index: 1000;
+}
+
+.sidebar a {
+display: block;
+color: rgb(244, 239, 239);
+padding: 15px;
+text-decoration: none;
+transition: background 0.3s;
+}
+
+.sidebar a:hover {
+background: rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-toggle {
+cursor: pointer;
+}
+ 
+</style>
+
+<body class="bg-gray-50 text-gray-800">
+    <!-- Sidebar -->
+<div id="sidebar" class="sidebar bg-[rgba(0,0,0,0.5)] backdrop-blur-lg flex flex-col h-full" data-aos="fade-right" data-aos-duration="600">
+    <a href="#" id="close-sidebar" class="text-right px-4 py-2 text-white text-3xl hover:text-gray-200 transition duration-300">✖</a>
+    <a href="./" class="text-white hover:text-gray-200 mx-2 text-lg font-semibold transition duration-300"><em>Beranda</em></a>
+    <a href="./jenis.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Jenis Ikan</em></a>
+    <a href="./alamat.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Alamat</em></a>
+    <a href="./kontak.html" class="mx-2 text-white hover:text-gray-200 text-lg font-semibold transition duration-300"><em>Kontak</em></a>
+    <br />
+ 
+    
+    <div class="footer mt-auto p-4">
+        <p class="mb-2 text-white text-center font-semibold">
+            <em>&copy; 2024 Pelelangan Ikan. Semua Hak Dilindungi.</em>
+        </p>
+    </div>
+</div>
+
+    
+   <!-- Navigasi -->
+<nav class="shadow backdrop-blur-sm bg-transparent mb-10 w-full justify-center fixed top-0 z-10"
+data-aos="fade-down" data-aos-duration="2000">
+<div class="w-full mx-auto px-4 py-3 flex justify-between items-center">
+    <!-- Teks "Pelelangan Ikan" dengan efek gradien dan lebih menarik -->
+    <a href="#" class="text-4xl font-extrabold text-white hover:text-white">
+    <em>Pelelangan <span>Ikan.</span></em>
+</a>
+
+
+    <!-- Navigasi Links -->
+    <div class="hidden md:flex space-x-6">
+        <a href="./" class="text-white hover:text-blue-500 font-medium transition duration-300">Beranda</a>
+        <a href="./jenis.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Jenis Ikan</a>
+        <a href="./alamat.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Alamat</a>
+        <a href="./kontak.html" class="text-white hover:text-blue-500 font-medium transition duration-300">Kontak</a>
+    </div>
+
+            <div class="md:hidden">
+                <button id="sidebar-toggle" class="text-white focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+<h1 class="text-center text-4xl font-semibold text-white">Jenis Ikan Kami</h1>
+<section class="product-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+
+        <!-- Ikan Kakap Merah -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan kakap merah.jpg" alt="Ikan Kakap merah" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Kakap Merah</h2>
+                <p class="text-gray-600">Harga: Rp 50.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20kakap" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Tuna -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan tuna.jpg" alt="Ikan Tuna" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Tuna</h2>
+                <p class="text-gray-600">Harga: Rp 75.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20tuna" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Tenggiri -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan tenggiri.jpg" alt="Ikan Tenggiri" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black600">Ikan Tenggiri</h2>
+                <p class="text-gray-600">Harga: Rp 34.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20tenggiri" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Baronang -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan baronang.jpg" alt="Ikan Baronang" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Baronang</h2>
+                <p class="text-gray-600">Harga: Rp 20.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20baronang" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Katamba -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan katamba.jpg" alt="Ikan Katamba" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Katamba</h2>
+                <p class="text-gray-600">Harga: Rp 30.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20katamba" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Bolu -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan bolu.jpg" alt="Ikan Bolu" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Bolu</h2>
+                <p class="text-gray-600">Harga: Rp 25.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20bolu" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Cakalang -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan cakalang.jpg" alt="Ikan Cakalang" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Cakalang</h2>
+                <p class="text-gray-600">Harga: Rp 24.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20cakalang" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Ekor Kuning -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan ekor kuning.jpg" alt="Ikan Ekor Kuning" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Ekor Kuning</h2>
+                <p class="text-gray-600">Harga: Rp 15.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20ekor%20kuning" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Kerapu -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan kerapu.jpg" alt="Ikan Kerapu" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Kerapu</h2>
+                <p class="text-gray-600">Harga: Rp 23.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20kerapu" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Laccukang -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan laccukang.jpg" alt="Ikan Laccukang" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-balck-600">Ikan Laccukang</h2>
+                <p class="text-gray-600">Harga: Rp 28.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20laccukang" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Copa -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan copa.jpg" alt="Ikan Copa" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Copa</h2>
+                <p class="text-gray-600">Harga: Rp 21.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20copa" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Layang -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan layang.jpg" alt="Ikan Layang" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Layang</h2>
+                <p class="text-gray-600">Harga: Rp 20.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20layang" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+        <!-- Ikan Biawasa -->
+        <div class="product bg-white rounded-lg shadow-lg overflow-hidden"data-aos="flip-right" data-aos-duration="2000">
+            <img src="ikan biahasa.jpg" alt="Ikan Biawasa" class="w-full h-48 object-cover">
+            <div class="p-4">
+                <h2 class="text-xl font-semibold text-black-600">Ikan Biawasa</h2>
+                <p class="text-gray-600">Harga: Rp 25.000/kg</p>
+                <a href="https://wa.me/6282187311437?text=Halo%2C%20saya%20ingin%20memesan%20ikan%20biawasa" target="_blank"
+                    class="mt-2 inline-block text-blue-600 hover:text-blue-800 font-semibold">Hubungi Kami via WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // JavaScript untuk Sidebar
+        const sidebar = document.getElementById("sidebar");
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+    const closeSidebar = document.getElementById("close-sidebar");
+
+    sidebarToggle.addEventListener("click", function () {
+        sidebar.style.left = "0px";
+    });
+
+    closeSidebar.addEventListener("click", function () {
+        sidebar.style.left = "-250px";
+    });
+
+    const sidebarLinks = document.querySelectorAll(".sidebar a");
+    sidebarLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+            sidebar.style.left = "-250px";
+        });
+    });
+</script>
+    
+<footer class="bg-gray-500/50 text-white py-4 backdrop-blur-sm">
+    <div class="container mx-auto text-center">
+        <p>© 2024 Pelelangan Ikan. Semua Hak Dilindungi.</p>
+    </div>
+</footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   
+        <script>
+             AOS.init()
+        </script>
