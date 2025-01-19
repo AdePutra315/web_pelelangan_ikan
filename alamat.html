@@ -156,10 +156,7 @@
         // Inisialisasi AOS
         AOS.init();
 
-        document.addEventListener("DOMContentLoaded", function () {
-            const map = L.map("map").setView([-6.095807166955127, 120.46543684047023], 18);
-
-          document.addEventListener("DOMContentLoaded", function () {
+         document.addEventListener("DOMContentLoaded", function () {
             const map = L.map("map").setView([-6.095807166955127, 120.46543684047023], 18);
 
              // Lapisan Peta OSM
@@ -183,6 +180,7 @@
         };
     
         L.control.layers(baseMaps).addTo(map);
+
 
             const umkmData = {
                 name: "Gudang Ikan",
