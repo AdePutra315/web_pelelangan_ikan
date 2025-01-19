@@ -95,7 +95,7 @@
     
     <div class="footer mt-auto p-4">
         <p class="mb-2 text-white text-center font-semibold">
-            <em>&copy; 2024 Pelelangan Ikan. Semua Hak Dilindungi.</em>
+            <em>&copy; 2025 Pelelangan Ikan. Semua Hak Dilindungi.</em>
         </p>
     </div>
 </div>
@@ -140,7 +140,7 @@
 <footer class="bg-gray-500/50 text-white py-4 backdrop-blur-sm fixed bottom-0 w-full">
     <div class="container mx-auto px-4 text-center">
         <p class="text-sm sm:text-base lg:text-lg font-medium">
-            © 2024 Pelelangan Ikan. Semua Hak Dilindungi.
+            © 2025 Pelelangan Ikan. Semua Hak Dilindungi.
         </p>
     </div>
 </footer>
@@ -159,19 +159,30 @@
         document.addEventListener("DOMContentLoaded", function () {
             const map = L.map("map").setView([-6.095807166955127, 120.46543684047023], 18);
 
-            const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap contributors'
-            });
-            
-            osmLayer.addTo(map);
+          document.addEventListener("DOMContentLoaded", function () {
+            const map = L.map("map").setView([-6.095807166955127, 120.46543684047023], 18);
 
-            const baseLayers = {
-                "Standar": osmLayer,
-                "default": map
-            };
-
-            L.control.layers(baseLayers).addTo(map);
+             // Lapisan Peta OSM
+        const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        }).addTo(map);
+    
+        // Lapisan Peta Satelit
+        const satelliteLayer = L.tileLayer("https://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}", {
+            maxZoom: 20,
+            subdomains: ["mt0", "mt1", "mt2", "mt3"],
+            attribution: '&copy; <a href="https://www.google.com/maps">Google Maps</a>',
+        });
+    
+        // Menambahkan kontrol layer
+        const baseMaps = {
+            "osm": osmLayer,
+            "Satelit": satelliteLayer,
+            "default":map,
+        };
+    
+        L.control.layers(baseMaps).addTo(map);
 
             const umkmData = {
                 name: "Gudang Ikan",
